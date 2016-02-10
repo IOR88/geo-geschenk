@@ -1,0 +1,8 @@
+{
+  "name": "geo-geschenk",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-material": "~1.0.5"
+  }
+}
