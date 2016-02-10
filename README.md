@@ -1,6 +1,8 @@
 # geo-geschenk
+about project
 
-development
+# development
+
     python 3.3 (3.3.6)
     virtualenv NAME -p /path/to/your/python3.3
     pip install -r requirements.txt
