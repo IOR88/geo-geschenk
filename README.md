@@ -17,6 +17,13 @@ about project
     sudo apt-get install supervisor (handle gunicorn automatication)
     $ sudo cp geo-geschenk-deploy.conf /etc/supervisor/conf.d/
 
+    configuration-nginx
+        in geo-geschenk-nginx.conf change alias for location /static/
+        $ sudo cp geo-geschenk-nginx.conf /etc/nginx/sites-available/geo-geschenk.com
+        $ sudo ln -s /etc/nginx/sites-available/geo-geschenk.com /etc/nginx/sites-enabled/geo-geschenk.com
+        $ sudo nginx -t && sudo service nginx restart
+
+
     to stop
     $ sudo supervisorctl stop geo-geschenk-deploy
 
