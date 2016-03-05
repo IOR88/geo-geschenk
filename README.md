@@ -31,6 +31,9 @@ about project
     -||-                 update
     -||-                 start geo-geschenk-deploy
 
+    for debugging app
+    supervisorctl tail geo-geschenk-deploy
+
     run browser on 127.0.0.1:8000
 
 

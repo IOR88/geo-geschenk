@@ -1,12 +1,17 @@
-__author__ = 'ing'
-
 from flask import Flask
+from flask import render_template
+
 app = Flask(__name__)
 
 
 @app.route('/')
 def main():
-    return 'Hello World MAN!!'
+    return render_template('base.html')
+
+
+@app.route('/test')
+def main2():
+    return 'TEST'
 
 if __name__ == '__main__':
     app.run()
