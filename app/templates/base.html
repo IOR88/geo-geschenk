@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/libs/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="static/libs/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="static/css/app.css">
     <title></title>
 </head>
@@ -43,6 +44,44 @@
                          class="md-button md-raised md-primary">Upload GeoJSON</label>
               </form>
 
+              <div ng-show="ctrl.progress">
+                 <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+              </div>
+
+              <md-content ng-if="ctrl.geojson_ready">
+                  <p>Please start dynamic searching of your geojson.:)</p>
+
+                  <!-- CHECKBOXES FOR FILTERS -->
+
+                  <div layout="row" layout-wrap flex>
+                    <div flex="25" ng-repeat="choice in ctrl.geojson_keys">
+                      <md-checkbox ng-model="choice"
+                              ng-click="ctrl.check(choice)">
+                        <span>{{ choice.keys[0] }}</span>
+                      </md-checkbox>
+                    </div>
+                  </div>
+
+                  <geo-geschenk-map
+                      geojson="ctrl.geojson_map">
+                      <div id="map"></div>
+                  </geo-geschenk-map>
+
+                  <!-- SEARCH FILTERS -->
+                  <div layout="row" layout-wrap flex>
+                    <div flex="50" ng-repeat="choice in ctrl.geojson_keys"
+                                   ng-if="choice.active">
+                      <md-input-container class="md-block" flex-gt-sm>
+                          <label>{{choice.keys[0]}}</label>
+                          <input name="name"
+                                 ng-model-options="{ debounce: 400 }"
+                                 ng-model="choice.search" />
+                      </md-input-container>
+                    </div>
+                  </div>
+
+              </md-content>
+
             </md-content>
           </md-tab>
 
@@ -69,10 +108,12 @@
 <script src="static/libs/angular-messages/angular-messages.js"></script>
 <script src="static/libs/angular-material/angular-material.js"></script>
 <script src="static/libs/ng-file-upload/ng-file-upload.js"></script>
+<script src="static/libs/leaflet/dist/leaflet.js"></script>
 
 <!-- APP -->
 <script src="static/app/app.js"></script>
 <script src="static/app/controller.js"></script>
 <script src="static/app/service.js"></script>
+<script src="static/app/map.js"></script>
 
 </html>
