@@ -1,3 +1,3 @@
 'use strict';
 angular
-    .module('geoGeschenk', ['ngMaterial']);
+    .module('geoGeschenk', ['ngMaterial', 'ngFileUpload']);

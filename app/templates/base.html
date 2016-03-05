@@ -8,12 +8,55 @@
     <title></title>
 </head>
 {% raw %}
-<body ng-app="geoGeschenk"
+<body ng-app="geoGeschenk" layout="column"
       ng-controller="geoGeschenkController as ctrl"
       ng-cloak>
-    <main>
-        {{ctrl.main}}
-    </main>
+
+       <!-- NAV -->
+       <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">
+              <h3>
+                <span>Geo-Geschenk</span>
+              </h3>
+            </div>
+       </md-toolbar>
+
+
+      <!-- BODY -->
+      <md-content class="geo-geschenk-container">
+
+        <md-tabs md-dynamic-height md-border-bottom>
+
+          <md-tab label="Search">
+            <md-content class="md-padding">
+              <h1 class="md-display-1">Dynamic traversing of GeoJSON doc</h1>
+              <p>Lorem ipsum dolor sit amet</p>
+
+              <form>
+                  <input class="ng-hide"
+                         id="input-file-id"
+                         ngf-select="ctrl.uploadFile($file)"
+                         name="file"
+                         type="file"/>
+                  <label for="input-file-id"
+                         md-ink-ripple="#ffffff"
+                         class="md-button md-raised md-primary">Upload GeoJSON</label>
+              </form>
+
+            </md-content>
+          </md-tab>
+
+          <md-tab label="Geo-Squizzy">
+            <md-content class="md-padding">
+              <h1 class="md-display-1">Geo-Squizzy</h1>
+              <p>Lorem ipsum dolor sit amet</p>
+            </md-content>
+          </md-tab>
+
+        </md-tabs>
+
+      </md-content>
+
 
 
 </body>
@@ -25,6 +68,7 @@
 <script src="static/libs/angular-aria/angular-aria.js"></script>
 <script src="static/libs/angular-messages/angular-messages.js"></script>
 <script src="static/libs/angular-material/angular-material.js"></script>
+<script src="static/libs/ng-file-upload/ng-file-upload.js"></script>
 
 <!-- APP -->
 <script src="static/app/app.js"></script>

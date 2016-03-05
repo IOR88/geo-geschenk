@@ -22,5 +22,8 @@ exec ${GUNICORN} ${FLASK_WSGI_MODULE}:app -b ${HOST} \
   --name $NAME \
   --workers $NUM_WORKERS \
   --user=$USER \
-  --log-level=debug \
+  --enable-stdio-inheritance \
+#  --access-logfile /home/ing/PycharmProjects/geo-geschenk/geo-geschenk/logs/gunicorn-access.log \ whats wrong here ?
+#  --error-logfile /home/ing/PycharmProjects/geo-geschenk/geo-geschenk/logs/gunicorn-error.log \
+  -R \
   --reload
