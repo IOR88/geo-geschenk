@@ -1,5 +1,5 @@
 # geo-geschenk
-about project
+![alt tag](https://github.com/LowerSilesians/geo-geschenk/blob/master/geo-geschenk-screen.png)
 
 # development
 
