@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask import render_template
 from upload_service import UploadService, MongoDBService
-from utils import random_charts_generator
+from utils import random_charts_generator, encode_mongo_data
+from flask import make_response
 from bson.json_util import dumps, loads
 import json
 
@@ -36,6 +37,7 @@ def upload():
 @app.route('/search', methods=['POST'])
 def search():
     global doc_session
+    print(doc_session)
     try:
         mongo = MongoDBService(port=27017, url='localhost', db='test', collection=doc_session)
         cur = mongo.make_search_query(query=request.get_json()['query'])
@@ -44,8 +46,8 @@ def search():
     except Exception as e:
         print(e)
         res = {'status': 401, 'data': []}
-    # TODO ObjectId('56db67c4b260f23c55657f18') is not JSON serializable
-    return jsonify(res)
+    mongo_translation = encode_mongo_data(res)
+    return make_response(jsonify(mongo_translation))
 
 if __name__ == '__main__':
     handler = RotatingFileHandler('logs/flask-logs.log', maxBytes=10000, backupCount=1)

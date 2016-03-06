@@ -60,7 +60,6 @@ class MongoDBService:
         collection = self.create_collection(name=name)
         mongo_data = self.convert_into_object(string=doc)
         [collection.insert_one(x) for x in mongo_data['features']]
-        # collection.insert_one(mongo_data)
 
     def __search__(self, query=None):
         res = self.collection.find(query)

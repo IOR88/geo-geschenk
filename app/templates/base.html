@@ -67,18 +67,35 @@
                       <div id="map"></div>
                   </geo-geschenk-map>
 
+                  <!-- SEARCH OPTIONS -->
+                  <br/>
+
+                  <div layout="row" layout-wrap flex>
+                    <div flex="25" ng-repeat="option in ctrl.options">
+                      <md-checkbox ng-model="option"
+                              ng-click="ctrl.check(option)">
+                        <span>{{ option.name }}</span>
+                      </md-checkbox>
+                    </div>
+                  </div>
+
+
                   <!-- SEARCH FILTERS -->
                   <div layout="row" layout-wrap flex>
                     <div flex="50" ng-repeat="choice in ctrl.geojson_keys"
                                    ng-if="choice.active">
                       <md-input-container class="md-block" flex-gt-sm>
-                          <label>{{choice.keys[0]}}</label>
-                          <input name="name"
-                                 ng-model-options="{ debounce: 400 }"
+                          <label for="{{choice.keys[0]}}">{{choice.keys[0]}}</label>
+                          <input id="{{choice.keys[0]}}"
+                                 type="text"
+                                 ng-model-options="{ debounce: 800 }"
                                  ng-model="choice.search" />
                       </md-input-container>
                     </div>
                   </div>
+                  <p ng-repeat="x in ctrl.geojson_keys">
+                      {{x.search}}
+                  </p>
 
               </md-content>
 

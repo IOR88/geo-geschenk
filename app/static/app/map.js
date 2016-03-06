@@ -11,7 +11,7 @@ angular
             scope:{geojson:'='},
             link: function(scope, element, attr){
 
-                var map;
+                var map, FeatureLayer;
 
                 var BaseMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -27,8 +27,15 @@ angular
 
                 scope.$watch('geojson', function(nGeo, oGeo){
 
+                    console.log([nGeo, oGeo]);
                     if(nGeo !== oGeo){
-                       L.geoJson(nGeo).addTo(map);
+                        if(!angular.isUndefined(FeatureLayer)){
+                            FeatureLayer.clearLayers();
+                            FeatureLayer.addData(nGeo);
+                        } else {
+                            FeatureLayer = L.geoJson(nGeo);
+                            map.addLayer(FeatureLayer);
+                        }
                     }
                 },true);
 

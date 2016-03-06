@@ -17,6 +17,12 @@ angular
         ctrl.geojson_ready = false;
         ctrl.geojson_keys = [];
 
+        ctrl.options = [{
+            id: 0,
+            name: 'regex search',
+            value: false
+        }];
+
         function uploadFile(file){
             ctrl.progress = true;
             geoGeschenkUploadFactory.uploadFile(file)
@@ -41,8 +47,10 @@ angular
 
         function search(){
             geoGeschenkMongoFactory
-                .search(ctrl.geojson_keys)
+                .search(ctrl.geojson_keys, ctrl.options)
                 .then(function(data){
+                    console.log(data.data.data);
+                    ctrl.geojson_map = {type:'FeatureCollection', features: data.data.data}
 
                 }, function(error){
 
