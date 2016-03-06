@@ -12,28 +12,27 @@ angular
 
         var ctrl = this;
 
-        ctrl.file = {};
-        ctrl.progress = false;
-        ctrl.geojson_ready = false;
-        ctrl.geojson_keys = [];
+        $scope.file = {};
+        $scope.progress = false;
+        $scope.geojson_ready = false;
 
-        ctrl.options = [{
+        $scope.options = [{
             id: 0,
             name: 'regex search',
             value: false
         }];
 
         function uploadFile(file){
-            ctrl.progress = true;
+            $scope.progress = true;
             geoGeschenkUploadFactory.uploadFile(file)
                 .then(function (res) {
-                   ctrl.progress = false;
-                   ctrl.geojson_keys = angular.copy(res.data.data);
+                   $scope.progress = false;
+                    $scope.geojson_keys = angular.copy(res.data.data);
 
-                   ctrl.geojson_ready = true;
+                   $scope.geojson_ready = true;
 
                 }, function (error) {
-                   ctrl.progress = false;
+                   $scope.progress = false;
 
                 }, function (evt) {
                    //ctrl.progress = parseInt(100.0 * evt.loaded / evt.total);
@@ -42,15 +41,15 @@ angular
 
         function check(item){
             item.active = !item.active;
+            if(!item.active){item.search = ''}
         }
 
 
         function search(){
             geoGeschenkMongoFactory
-                .search(ctrl.geojson_keys, ctrl.options)
+                .search($scope.geojson_keys, $scope.options)
                 .then(function(data){
-                    console.log(data.data.data);
-                    ctrl.geojson_map = {type:'FeatureCollection', features: data.data.data}
+                    $scope.geojson_map = {type:'FeatureCollection', features: data.data.data}
 
                 }, function(error){
 
@@ -58,15 +57,15 @@ angular
         }
 
 
-        $scope.$watch('ctrl.geojson_keys', function(newV, oldV){
+        $scope.$watch('geojson_keys', function(newV, oldV){
 
                     if(newV !== oldV){
                        search();
                     }
         },true);
 
-        ctrl.uploadFile = uploadFile;
-        ctrl.check = check;
+        $scope.uploadFile = uploadFile;
+        $scope.check = check;
 
 
     }]);

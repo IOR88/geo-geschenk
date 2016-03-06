@@ -53,7 +53,6 @@ class MongoDBService:
 
     def make_search_query(self, query=None):
         query = {str.join('.', x['keys'][::-1]): x.get('search') for x in query if x.get('search', None) is not None}
-        print(query)
         return self.__search__(query=query)
 
     def save_doc(self, name=None, doc=None):
@@ -63,5 +62,4 @@ class MongoDBService:
 
     def __search__(self, query=None):
         res = self.collection.find(query)
-        print(res)
         return res

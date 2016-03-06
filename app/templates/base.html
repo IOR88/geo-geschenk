@@ -10,7 +10,7 @@
 </head>
 {% raw %}
 <body ng-app="geoGeschenk" layout="column"
-      ng-controller="geoGeschenkController as ctrl"
+      ng-controller="geoGeschenkController"
       ng-cloak>
 
        <!-- NAV -->
@@ -24,7 +24,7 @@
 
 
       <!-- BODY -->
-      <md-content class="geo-geschenk-container">
+      <main class="geo-geschenk-container">
 
         <md-tabs md-dynamic-height md-border-bottom>
 
@@ -36,7 +36,7 @@
               <form>
                   <input class="ng-hide"
                          id="input-file-id"
-                         ngf-select="ctrl.uploadFile($file)"
+                         ngf-select="uploadFile($file)"
                          name="file"
                          type="file"/>
                   <label for="input-file-id"
@@ -44,26 +44,25 @@
                          class="md-button md-raised md-primary">Upload GeoJSON</label>
               </form>
 
-              <div ng-show="ctrl.progress">
+              <div ng-show="progress">
                  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
               </div>
 
-              <md-content ng-if="ctrl.geojson_ready">
+              <md-content ng-if="geojson_ready">
                   <p>Please start dynamic searching of your geojson.:)</p>
 
                   <!-- CHECKBOXES FOR FILTERS -->
 
                   <div layout="row" layout-wrap flex>
-                    <div flex="25" ng-repeat="choice in ctrl.geojson_keys">
-                      <md-checkbox ng-model="choice"
-                              ng-click="ctrl.check(choice)">
-                        <span>{{ choice.keys[0] }}</span>
-                      </md-checkbox>
+                    <div flex="25" ng-repeat="choice in geojson_keys">
+                        <md-checkbox ng-checked="choice.active" ng-click="check(choice)">
+                          {{ choice.keys[0] }}
+                        </md-checkbox>
                     </div>
                   </div>
 
                   <geo-geschenk-map
-                      geojson="ctrl.geojson_map">
+                      geojson="geojson_map">
                       <div id="map"></div>
                   </geo-geschenk-map>
 
@@ -71,9 +70,8 @@
                   <br/>
 
                   <div layout="row" layout-wrap flex>
-                    <div flex="25" ng-repeat="option in ctrl.options">
-                      <md-checkbox ng-model="option"
-                              ng-click="ctrl.check(option)">
+                    <div flex="25" ng-repeat="option in options">
+                      <md-checkbox ng-checked="option.active" ng-click="check(option)">
                         <span>{{ option.name }}</span>
                       </md-checkbox>
                     </div>
@@ -82,7 +80,7 @@
 
                   <!-- SEARCH FILTERS -->
                   <div layout="row" layout-wrap flex>
-                    <div flex="50" ng-repeat="choice in ctrl.geojson_keys"
+                    <div flex="50" ng-repeat="choice in geojson_keys"
                                    ng-if="choice.active">
                       <md-input-container class="md-block" flex-gt-sm>
                           <label for="{{choice.keys[0]}}">{{choice.keys[0]}}</label>
@@ -93,9 +91,7 @@
                       </md-input-container>
                     </div>
                   </div>
-                  <p ng-repeat="x in ctrl.geojson_keys">
-                      {{x.search}}
-                  </p>
+
 
               </md-content>
 
@@ -111,7 +107,7 @@
 
         </md-tabs>
 
-      </md-content>
+      </main>
 
 
 
