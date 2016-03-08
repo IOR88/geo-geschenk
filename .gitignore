@@ -7,3 +7,4 @@ virtualenv
 app/static/libs
 project_information.txt
 logs
+static/libs
