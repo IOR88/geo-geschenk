@@ -12,6 +12,7 @@ angular
             link: function(scope, element, attr){
 
                 var map, FeatureLayer;
+                var markersClusterGroup= new L.MarkerClusterGroup();
 
                 var def_cor = [26.3652805, 45.6416492];
 
@@ -31,13 +32,30 @@ angular
 
                     if(nGeo !== oGeo){
                         if(!angular.isUndefined(FeatureLayer)){
+                            /** with cluster mode*/
+                            markersClusterGroup.clearLayers();
                             FeatureLayer.clearLayers();
                             FeatureLayer.addData(nGeo);
+                            markersClusterGroup.addLayer(FeatureLayer);
+                            map.addLayer(markersClusterGroup);
                             setCenter(map, nGeo.features);
+
+                            /** without cluster mode*/
+                            //FeatureLayer.clearLayers();
+                            //FeatureLayer.addData(nGeo);
+                            //setCenter(map, nGeo.features);
+
                         } else {
+                            /** with cluster mode*/
                             FeatureLayer = L.geoJson(nGeo);
-                            map.addLayer(FeatureLayer);
+                            markersClusterGroup.addLayer(FeatureLayer);
+                            map.addLayer(markersClusterGroup);
                             setCenter(map, nGeo.features);
+
+                            /** without cluster mode*/
+                            //FeatureLayer = L.geoJson(nGeo);
+                            //map.addLayer(FeatureLayer);
+                            //setCenter(map, nGeo.features);
                         }
                     }
                 },true);

@@ -53,4 +53,4 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('logs/flask-logs.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
-    app.run(port=5002)
+    app.run(port=5004)

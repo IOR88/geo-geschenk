@@ -3,4 +3,9 @@
       margin: 0 25% 0 25%;
 }
 
+.github-icon {
+    width:60px;
+    height: auto;
+}
+
 #map { height: 400px; }
