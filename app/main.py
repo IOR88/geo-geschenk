@@ -19,22 +19,22 @@ def main():
     return render_template('base.html')
 
 
-# @app.route('/upload', methods=['POST'])
-# def upload():
-#     global doc_session
-#     doc_session = random_charts_generator()
-#     try:
-#         upload_service = UploadService(request=request, session=doc_session)
-#         data = upload_service.response()
-#         res = {'status': 200, 'data': data}
-#     except Exception as e:
-#         print(e)
-#         res = {'status': 401, 'data': []}
-#
-#     return jsonify(res)
-
-
 @app.route('/upload', methods=['POST'])
+def upload():
+    global doc_session
+    doc_session = random_charts_generator()
+    try:
+        upload_service = UploadService(request=request, session=doc_session)
+        data = upload_service.response()
+        res = {'status': 200, 'data': data}
+    except Exception as e:
+        print(e)
+        res = {'status': 401, 'data': []}
+
+    return jsonify(res)
+
+
+@app.route('/upload2', methods=['POST'])
 def demo():
     global doc_session
     doc_session = random_charts_generator()
