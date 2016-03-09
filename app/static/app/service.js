@@ -1,7 +1,7 @@
 'use strict';
 angular
     .module('geoGeschenk')
-    .factory('geoGeschenkUploadFactory', ['Upload',function(Upload){
+    .factory('geoGeschenkUploadFactory', ['Upload','$http',function(Upload, $http){
 
         function uploadFile(file) {
             return Upload.upload({
@@ -10,8 +10,21 @@ angular
             })
         }
 
+        function getDemo() {
+                    var req = {
+                         method: 'POST',
+                         url: 'demo',
+                         headers: {
+                           'Content-Type': 'application/json'
+                         },
+                         data: {}
+                    };
+            return $http(req)
+        }
+
         return {
-            uploadFile: uploadFile
+            uploadFile: uploadFile,
+            getDemo: getDemo
         }
     }])
     .factory('geoGeschenkMongoExtenstionsFactory', [function(){

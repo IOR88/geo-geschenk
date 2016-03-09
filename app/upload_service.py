@@ -1,19 +1,29 @@
 from geosquizzy.squizzy import GeoSquizzy
 from pymongo import MongoClient
 import json
+from utils import get_data
 
 
 class UploadService:
-    def __init__(self, request=None, session=None):
-        self.file_raw = self.__read__file__(file=request.files['file'])
+    def __init__(self, request=None, session=None, url=None):
+        self.data = self.__get__file(request=request, url=url)
+        self.file_raw = self.__read__data__(data=self.data)
         self.file = self.__decode_file__(file=self.file_raw)
         self.mongo = MongoDBService(port=27017, url='localhost', db='test')
         self.mongo.save_doc(name=session, doc=self.file)
         self.geojson = GeoJSONService(geojson_doc_type="FeatureCollection", data=self.file)
 
     @staticmethod
-    def __read__file__(file=None):
-        return file.read()
+    def __get__file(**kwargs):
+        file = kwargs.get('request', None)
+        if file is not None:
+            return kwargs['request'].files['file']
+        else:
+            return get_data(url=kwargs['url'])
+
+    @staticmethod
+    def __read__data__(data=None):
+        return data.read()
 
     @staticmethod
     def __decode_file__(file=None):

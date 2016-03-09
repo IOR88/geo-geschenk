@@ -39,6 +39,19 @@ angular
                 });
         }
 
+        function demo(){
+            $scope.progress = true;
+            geoGeschenkUploadFactory.getDemo()
+                .then(function (res) {
+                   $scope.progress = false;
+                   $scope.geojson_keys = angular.copy(res.data.data);
+                   $scope.geojson_ready = true;
+                }, function (error) {
+                   $scope.progress = false;
+
+                });
+        }
+
         function check(item){
             item.active = !item.active;
             if(!item.active){item.search = ''}
@@ -66,6 +79,7 @@ angular
 
         $scope.uploadFile = uploadFile;
         $scope.check = check;
+        $scope.demo = demo;
 
 
     }]);

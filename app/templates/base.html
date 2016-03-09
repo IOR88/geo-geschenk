@@ -36,16 +36,22 @@
               <p>Geo-Geschenk together with geo-squizzy and MongoDB constitute profesional
                  tool for searching through unknown GeoJSON docs.</p>
 
-              <form>
-                  <input class="ng-hide"
-                         id="input-file-id"
-                         ngf-select="uploadFile($file)"
-                         name="file"
-                         type="file"/>
-                  <label for="input-file-id"
-                         md-ink-ripple="#ffffff"
-                         class="md-button md-raised md-primary">Upload GeoJSON</label>
-              </form>
+              <section layout="row" layout-sm="column" layout-align="left left" layout-wrap>
+                  <form>
+                      <input class="ng-hide"
+                             id="input-file-id"
+                             ngf-select="uploadFile($file)"
+                             name="file"
+                             type="file"/>
+                      <label for="input-file-id"
+                             md-ink-ripple="#ffffff"
+                             class="md-button md-raised md-primary">Upload GeoJSON</label>
+                  </form>
+
+                  <md-button ng-click="demo()"
+                             class="md-button md-raised">Demo</md-button>
+
+              </section>
 
               <div ng-show="progress">
                  <md-progress-circular md-mode="indeterminate"></md-progress-circular>

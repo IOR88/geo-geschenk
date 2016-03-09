@@ -3,6 +3,7 @@ import string
 import uuid
 from bson.json_util import dumps
 import json
+from urllib.request import urlopen
 
 
 def random_charts_generator(size=6, chars=string.ascii_uppercase):
@@ -21,3 +22,11 @@ def encode_mongo_data(data=None):
     one = dumps(data)
     two = json.loads(one)
     return two
+
+
+def get_data(url=None):
+    """
+    get url data and decode it
+    """
+    res = urlopen(url=url)
+    return res
