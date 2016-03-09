@@ -13,7 +13,7 @@ angular
         function getDemo() {
                     var req = {
                          method: 'POST',
-                         url: 'demo',
+                         url: 'demo_example',
                          headers: {
                            'Content-Type': 'application/json'
                          },
