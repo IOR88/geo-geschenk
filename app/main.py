@@ -34,7 +34,7 @@ def upload():
     return jsonify(res)
 
 
-@app.route('/dupa_jasio', methods=['POST'])
+@app.route('/upload/demo', methods=['POST'])
 def demo():
     global doc_session
     doc_session = random_charts_generator()
