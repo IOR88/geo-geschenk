@@ -13,7 +13,7 @@ angular
         function getDemo() {
                     var req = {
                          method: 'POST',
-                         url: 'demo_example'
+                         url: 'dupa_jasio'
                     };
             return $http(req)
         }
