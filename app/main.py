@@ -34,7 +34,7 @@ def main():
 #     return jsonify(res)
 
 
-@app.route('/upload', methods=['GET'])
+@app.route('/upload', methods=['POST'])
 def demo():
     global doc_session
     doc_session = random_charts_generator()

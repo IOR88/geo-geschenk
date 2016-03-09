@@ -12,7 +12,7 @@ angular
 
         function getDemo() {
                     var req = {
-                         method: 'GET',
+                         method: 'POST',
                          url: 'upload'
                     };
             return $http(req)
