@@ -24,24 +24,12 @@ def upload():
     global doc_session
     doc_session = random_charts_generator()
     try:
-        upload_service = UploadService(request=request, session=doc_session)
-        data = upload_service.response()
-        res = {'status': 200, 'data': data}
-    except Exception as e:
-        print(e)
-        res = {'status': 401, 'data': []}
-
-    return jsonify(res)
-
-
-@app.route('/upload2', methods=['POST'])
-def demo():
-    global doc_session
-    doc_session = random_charts_generator()
-    try:
-        upload_service = UploadService(url='https://raw.githubusercontent.com/LowerSilesians/geo-squizzy/'
+        if not (request.files.get('file', None) is None):
+            upload_service = UploadService(request=request, session=doc_session)
+        else:
+            upload_service = UploadService(url='https://raw.githubusercontent.com/LowerSilesians/geo-squizzy/'
                                            'master/build_big_data/test_data/ExampleDataPoint.json',
-                                       session=doc_session)
+                                           session=doc_session)
         data = upload_service.response()
         res = {'status': 200, 'data': data}
     except Exception as e:
@@ -70,6 +58,4 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('logs/flask-logs.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
-    for rule in app.url_map.iter_rules():
-        print(rule)
     app.run(port=5004)

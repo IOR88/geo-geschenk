@@ -13,7 +13,7 @@ angular
         function getDemo() {
                     var req = {
                          method: 'POST',
-                         url: 'upload2'
+                         url: 'upload'
                     };
             return $http(req)
         }
