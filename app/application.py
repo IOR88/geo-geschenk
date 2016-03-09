@@ -1,4 +1,6 @@
-__author__ = 'ing'
+"""
+for megi WSGI settings
+"""
 
 from main import app
 
