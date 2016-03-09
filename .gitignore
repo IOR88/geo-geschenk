@@ -6,5 +6,5 @@ __pycache__
 virtualenv
 app/static/libs
 project_information.txt
-logs
+logs/*.log
 static/libs
