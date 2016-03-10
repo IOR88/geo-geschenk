@@ -3,7 +3,7 @@ import string
 import uuid
 from bson.json_util import dumps
 import json
-from urllib.request import urlopen
+import urllib.request as urllib
 
 
 def random_charts_generator(size=6, chars=string.ascii_uppercase):
@@ -28,5 +28,5 @@ def get_data(url=None):
     """
     get url data and decode it
     """
-    res = urlopen(url=url)
+    res = urllib.urlopen(url=url)
     return res

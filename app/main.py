@@ -27,8 +27,7 @@ def upload():
         if not (request.files.get('file', None) is None):
             upload_service = UploadService(request=request, session=doc_session)
         else:
-            upload_service = UploadService(url='https://raw.githubusercontent.com/LowerSilesians/geo-squizzy/'
-                                           'master/build_big_data/test_data/ExampleDataPoint.json',
+            upload_service = UploadService(url='https://raw.githubusercontent.com/LowerSilesians/geo-squizzy/master/build_big_data/test_data/ExampleDataPoint.json',
                                            session=doc_session)
         data = upload_service.response()
         res = {'status': 200, 'data': data}
