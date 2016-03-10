@@ -34,6 +34,9 @@ def upload():
         res = {'status': 200, 'data': data}
     except Exception as e:
         print(e)
+        app.logger.warning(e)
+        app.logger.error(e)
+        app.logger.info(e)
         res = {'status': 401, 'data': []}
 
     return jsonify(res)
@@ -59,4 +62,4 @@ if __name__ == '__main__':
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
     test_fetching_data_via_urllib(UploadService)
-    app.run(port=5004)
+    app.run(port=5001)
