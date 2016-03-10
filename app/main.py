@@ -8,6 +8,7 @@ import json
 
 import logging
 from logging.handlers import RotatingFileHandler
+from tests import test_fetching_data_via_urllib
 
 app = Flask(__name__)
 doc_session = ''
@@ -57,4 +58,5 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('logs/flask-logs.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
+    test_fetching_data_via_urllib(UploadService)
     app.run(port=5004)
