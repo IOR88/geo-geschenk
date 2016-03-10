@@ -61,8 +61,12 @@ def search():
     return make_response(jsonify(mongo_translation))
 
 if __name__ == '__main__':
-    handler = RotatingFileHandler('logs/flask-logs.log', maxBytes=10000, backupCount=1)
-    handler.setLevel(logging.INFO)
-    app.logger.addHandler(handler)
+    # handler = RotatingFileHandler('logs/flask-logs.log', maxBytes=10000, backupCount=1)
+    # handler.setLevel(logging.INFO)
+    # app.logger.addHandler(handler)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.WARNING)
+    app.logger.addHandler(stream_handler)
+
     test_fetching_data_via_urllib(UploadService)
     app.run(port=5001)
