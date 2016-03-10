@@ -22,6 +22,9 @@ def main():
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    app.logger.warning('TEST')
+    app.logger.error('TEST')
+    app.logger.info('TEST')
     global doc_session
     doc_session = random_charts_generator()
     try:
